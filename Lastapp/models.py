@@ -28,6 +28,7 @@ class Achat(models.Model):
     Statut = models.CharField(max_length=255)
     Client = models.ForeignKey(Client , on_delete=models.CASCADE)
     Panier = models .ForeignKey(Panier , on_delete=models.CASCADE)
+    Produit = models.ForeignKey(Produit , on_delete=models.CASCADE , default=1)
 
 class Transaction(models.Model):
     operation = models.CharField(max_length=100)
@@ -42,4 +43,3 @@ class Facture(models.Model):
     etat = models.CharField(max_length=255 )
     notes = models.CharField(max_length=255)
     Panier = models.ForeignKey(Panier , on_delete=models.CASCADE)
-    
