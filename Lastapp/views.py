@@ -39,7 +39,7 @@ def ajoutProduit(request):
     else:
         form = ProductForm()
 
-    return render(request, "ajoutProduit.html", {"product_form": form})
+    return render(request, "Produits/ajoutProduit.html", {"product_form": form})
 
 def ajoutCategorie(request):
     pass
