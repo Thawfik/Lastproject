@@ -1,0 +1,33 @@
+{% extends "Acceuil.html" %}
+{% block contenu %}
+
+<h1>LISTE DES PRODUITS</h1>
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Handle</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for produit in listeproduits %}
+        <tr>
+          <th scope="row"></th>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+  <div>
+    <a class="btn btn-success" role="button" href="{% url 'ajoutProduit' %}" style="position: absolute; bottom: 20px;  left: 20px;">AJOUTER UN PRODUIT</a>
+</div>
+
+
+
+{% endblock %}
