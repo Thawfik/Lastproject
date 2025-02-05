@@ -23,7 +23,7 @@ urlpatterns = [
     path('ajout_client/', views.ajoutClient , name="ajoutClient"),
 
     #/market/achat : URL menant à la page de la liste des achats
-    path('achat/', views.listeAchat , name="listeAChats"),
+    path('achat/', views.listeAchats , name="listeAchats"),
 
     #/market/ajout_achat : URL menant à la page d'ajout des achats
     path('ajout_achat/', views.ajoutAchat , name="ajoutAchat"),

@@ -8,18 +8,20 @@
     <thead>
         <tr>
           <th scope="col">ID</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+          <th scope="col">Nom</th>
+          <th scope="col">DESCRIPTION</th>
+          <th scope="col">PRIX UNITAIRE</th>
+          <th scope="col">CATEGORIE</th>
         </tr>
       </thead>
       <tbody>
         {% for produit in listeproduits %}
         <tr>
-          <th scope="row"></th>
-          <td></td>
-          <td></td>
-          <td></td>
+          <th scope="row">{{ produit.id}}</th>
+          <td>{{ produit.nom}}</td>
+          <td>{{ produit.description}}</td>
+          <td>{{ produit.prix_unitaire}}</td>
+          <td>{{ produit.Categorie}}</td>
         </tr>
         {% endfor %}
       </tbody>

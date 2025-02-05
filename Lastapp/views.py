@@ -13,7 +13,7 @@ def listeCategorie(request):
 def listeClient(request):
     pass
 
-def listeAchat(request):
+def listeAchats(request):
     pass
 
 def listeTransaction(request):
