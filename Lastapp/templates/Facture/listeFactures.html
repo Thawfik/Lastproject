@@ -1,0 +1,36 @@
+{% extends "Acceuil.html" %}
+{% block contenu %}
+
+<h1 style="text-align: center;">LISTE DES FACTURES</h1>
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">DATE DE LA FACTURE</th>
+          <th scope="col"> ETAT DE LA FACTURE</th>
+          <th scope="col">COMMENTAIRES</th>
+          <th scope="col">PANIER</th>
+          <th scope="col">MODE DE PAIEMENT</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for facture in listefactures %}
+        <tr>
+          <th scope="row">{{ facture.id}}</th>
+          <td>{{ facture.date}}</td>
+          <td>{{ facture.etat}}</td>
+          <td>{{ facture.notes}}</td>
+          <td>{{ transaction.Panier}}</td>
+          <td>{{ transaction.ModePaiement}}</td>
+
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+  <div>
+    <a class="btn btn-success" role="button" href="{% url 'ajoutFacture' %}" style="position: absolute; bottom: 20px;  left: 20px;">AJOUTER UNE FACTURE</a>
+    </div>
+
+{% endblock %}

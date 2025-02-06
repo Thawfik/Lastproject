@@ -1,0 +1,34 @@
+{% extends "Acceuil.html" %}
+{% block contenu %}
+
+<h1 style="text-align: center;">LISTE DES CLIENTS</h1>
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">NOM</th>
+          <th scope="col">PRENOM</th>
+          <th scope="col">CONTACT</th>
+          <th scope="col">RESIDENCE</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for client in listeclients %}
+        <tr>
+          <th scope="row">{{ client.id}}</th>
+          <td>{{ client.nom}}</td>
+          <td>{{ client.prenom}}</td>
+          <td>{{ client.contact}}</td>
+          <td>{{ client.residence}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+  <div>
+    <a class="btn btn-success" role="button" href="{% url 'ajoutClient' %}" style="position: absolute; bottom: 20px;  left: 20px;">AJOUTER UN CLIENT</a>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "Acceuil.html" %}
+
+{% block contenu %}
+
+<h1 style="text-align: center;">NOUVEAU PANIER</h1>
+
+<form action="{% url 'ajoutPanier' %}" method="post">
+
+    {% csrf_token %}
+    {{ panier_form.as_p }} 
+    <button class="btn btn-primary" type="submit">Enregistrer</button>
+</form>
+
+<div>
+    <a class="btn btn-success" role="button" href="{% url 'listeFactures' %}" style="position: absolute; bottom: 20px;  right: 20px;">LISTE DES FACTURES</a>
+</div>
+
+
+{% endblock %}

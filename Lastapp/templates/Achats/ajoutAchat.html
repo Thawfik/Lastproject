@@ -1,0 +1,19 @@
+{% extends "Acceuil.html" %}
+
+{% block contenu %}
+
+<h1 style="text-align: center;">ENREGISTRER UN ACHAT </h1>
+
+<form action="{% url 'ajoutAchat' %}" method="post">
+
+    {% csrf_token %}
+    {{ achat_form.as_p }} 
+    <button class="btn btn-primary" type="submit">Enregistrer</button>
+</form>
+
+<div>
+    <a class="btn btn-success" role="button" href="{% url 'listeAchats' %}" style="position: absolute; bottom: 20px;  right: 20px;">LISTE DES ACHATS</a>
+</div>
+
+
+{% endblock %}

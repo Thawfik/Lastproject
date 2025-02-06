@@ -1,0 +1,37 @@
+{% extends "Acceuil.html" %}
+{% block contenu %}
+
+<h1 style="text-align: center;">LISTE DES TRANSACTIONS</h1>
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">OPERATION</th>
+          <th scope="col">MONTANT</th>
+          <th scope="col">DATE</th>
+          <th scope="col">OPERATEUR</th>
+          <th scope="col">CLIENT</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for transaction in listetransactions %}
+        <tr>
+          <th scope="row">{{ transaction.id}}</th>
+          <td>{{ transaction.operateur}}</td>
+          <td>{{ transaction.montant}}</td>
+          <td>{{ transaction.dateoperation}}</td>
+          <td>{{ transaction.Operateur}}</td>
+          <td>{{ transaction.Client}}</td>
+
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+  <div>
+    <a class="btn btn-success" role="button" href="{% url 'ajoutTransaction' %}" style="position: absolute; bottom: 20px;  left: 20px;">AJOUTER UNE TRANSACTION</a>
+</div>
+
+
+{% endblock %}

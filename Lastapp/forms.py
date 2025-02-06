@@ -1,11 +1,11 @@
 from django import forms
-from Lastapp.models import Categorie , Produit , Client , Panier
+from Lastapp.models import Categorie , Produit , Client , Panier , Operateur , ModePaiement
 
 class ProductForm(forms.Form):
     nameProduct = forms.CharField(label="Nom du produit" , max_length=255)
     describeProduct = forms.CharField(label="description ", max_length=255)
     puProduct = forms.IntegerField(label="Prix unitaire" ,max_value=10000 , required=True)
-    Categorie = forms.ModelChoiceField(queryset=Categorie.objects.all())
+    Categorie = forms.ModelChoiceField(label="Categorie ",queryset=Categorie.objects.all())
 
 class ClientForm(forms.Form):
     nameClient = forms.CharField(label="Nom du client " , max_length=255)
@@ -23,16 +23,16 @@ class AchatForm(forms.Form):
 class TransactionForm(forms.Form):
     operationTransaction = forms.CharField(label="Nom de l'opération ", max_length=255)
     amountTransaction = forms.FloatField(label="Montant " , max_value=200000)
-    operatorTransaction = forms.CharField(label="Operateur" , max_length=255)
     dateTransaction = forms.DateField(label="Date de la transaction " , required=True)
-    Client = forms.ModelChoiceField(queryset=Client.objects.all ())
+    Operateur = forms.ModelChoiceField(label="Operateur",queryset=Operateur.objects.all())
+    Client = forms.ModelChoiceField(label="Client concerné " ,queryset=Client.objects.all ())
 
 class FactureForm(forms.Form):
     dateFacture = forms.DateField(label="Date de la facture " , required=True)
-    paymentwayFacture = forms.CharField(label="Mode de paiement " , max_length=255)
     etatFacture = forms.CharField(label="Etat de la facture " , max_length=255)
     notesFacture = forms.CharField(label="Commentaire " , max_length=255)
     Panier = forms.ModelChoiceField(queryset=Panier.objects.all())
+    ModePaiement = forms.ModelChoiceField(label="Mode de paiement " , queryset=ModePaiement.objects.all())
 
 class CategorieForm(forms.Form):
     titreCategorie = forms.CharField(label="Titre ",max_length=255)

@@ -38,7 +38,7 @@ class Achat(models.Model):
     Produit = models.ForeignKey(Produit , on_delete=models.CASCADE , default=1)
 
 class Operateur(models.Model):
-    nom = models.CharField(max_length=255 , default="")
+    nom = models.CharField(max_length=255 , default= "")
     def __str__(self):
         return self.nom
 
@@ -50,7 +50,7 @@ class Transaction(models.Model):
     Operateur = models.ForeignKey(Operateur , on_delete=models.CASCADE)
 
 class ModePaiement(models.Model):
-    nomMode = models.CharField(max_length=255 , default ="")
+    nomMode = models.CharField(max_length=255 , default = "")
     def __str__(self):
         return self.nomMode
     
@@ -60,3 +60,4 @@ class Facture(models.Model):
     etat = models.CharField(max_length=255 )
     notes = models.CharField(max_length=255)
     Panier = models.ForeignKey(Panier , on_delete=models.CASCADE)
+    ModePaiement = models.ForeignKey(ModePaiement , on_delete=models.CASCADE)

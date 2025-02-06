@@ -53,6 +53,7 @@ def ajoutCategorie(request):
             description = categorieform.cleaned_data["description"]
             oCategorie1 = Categorie(titre = titre , description = description)
             oCategorie1.save()
+        
             
     else:
         categorieform = CategorieForm()
@@ -70,10 +71,12 @@ def ajoutClient(request):
             residence = clientform.cleaned_data["residenceClient"]
             oClient1 = Client(nom = nom  , prenom = prenom , contact = contact , residence = residence)
             oClient1.save()
+            
+        redirect("listeClients")
     else:
         clientform = ClientForm()
 
-    return render (request , "Clients/listeClients.html",{"client_form":clientform})
+    return render (request , "Clients/ajoutClient.html",{"client_form":clientform})
 
 def ajoutTransaction(request):
     if request.method == "POST":
@@ -81,16 +84,16 @@ def ajoutTransaction(request):
         if transactionform.is_valid():
             operation = transactionform.cleaned_data["operationTransaction"]
             montant = transactionform.cleaned_data["amountTransaction"]
-            operateur = transactionform.cleaned_data["operateurTransaction"]
             date = transactionform.cleaned_data["dateTransaction"]
+            Operateur = transactionform.cleaned_data["Operateur"]
             Client = transactionform.cleaned_data["Client"]
 
-            oTransaction1 = Transaction(operation = operation  , montant = montant , operateur = operateur , dateoperation = date , Client = Client)
+            oTransaction1 = Transaction(operation = operation  , montant = montant ,  dateoperation = date , Operateur = Operateur , Client = Client  )
             oTransaction1.save()
     else:
         transactionform = TransactionForm()
 
-    return render (request , "Transactions/listeTransactions.html",{"transaction_form":transactionform})
+    return render (request , "Transactions/ajoutTransaction.html",{"transaction_form":transactionform})
 
 
 def ajoutFacture(request):
@@ -98,17 +101,17 @@ def ajoutFacture(request):
         factureform = FactureForm(request.POST)
         if factureform.is_valid():
             date = factureform.cleaned_data["dateFacture"]
-            mode = factureform.cleaned_data["paymentwayFacture"]
             etat = factureform.cleaned_data["etatFacture"]
             notes = factureform.cleaned_data["notesFacture"]
             Panier = factureform.cleaned_data["Panier"]
+            ModePaiement = factureform.cleaned_data["ModePaiement"]
 
-            oFacture1 = Facture(date = date  , mode_paiement = mode , etat = etat , note = notes , Panier = Panier)
+            oFacture1 = Facture(date = date  , etat = etat , note = notes , Panier = Panier , ModePaiement = ModePaiement)
             oFacture1.save()
     else:
         factureform = FactureForm()
 
-    return render (request , "Facture/listeFactures.html",{"facture_form":factureform})
+    return render (request , "Facture/ajoutFacture.html",{"facture_form":factureform})
 
 def ajoutAchat(request):
     if request.method == "POST":
@@ -125,7 +128,7 @@ def ajoutAchat(request):
     else:
         achatform = AchatForm()
 
-    return render (request , "Achats/listeAchats.html",{"achat_form":achatform})
+    return render (request , "Achats/ajoutAchat.html",{"achat_form":achatform})
 
 
 def ajoutPanier(request):
@@ -137,6 +140,8 @@ def ajoutPanier(request):
             etat = panierform.cleaned_data["etatPanier"]
             oPanier1 = Panier( nomPanier = nom , date_creation = date , etat = etat)
             oPanier1.save()
+   
+        redirect("listeFactures")
             
     else:
         panierform = PanierForm()
