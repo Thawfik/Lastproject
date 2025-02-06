@@ -1,7 +1,7 @@
 from django.shortcuts import render , redirect
 from django.http import HttpResponseRedirect
 from Lastapp.models import Produit, Categorie , Client , Transaction , Facture , Panier , Achat
-from .forms import ProductForm
+from .forms import ProductForm , CategorieForm
 
 def listeProduits(request):
     context = {"listeproduits":Produit.objects.all() }
@@ -42,7 +42,19 @@ def ajoutProduit(request):
     return render(request, "Produits/ajoutProduit.html", {"product_form": form})
 
 def ajoutCategorie(request):
-    pass
+    if request.method == "POST":
+        categorieform = CategorieForm(request.POST)
+        if categorieform.is_valid():
+            titre = categorieform.cleaned_data["titreCategorie"]
+            description = categorieform.cleaned_data["description"]
+            oCategorie1 = Categorie(titre = titre , description = description)
+            oCategorie1.save()
+            redirect("listeProduits")
+    else:
+        form = CategorieForm()
+
+    return render(request, "Categorie/ajoutCategorie.html", {"categorie_form": form})
+
 
 def ajoutClient(request):
     pass
