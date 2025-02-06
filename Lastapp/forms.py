@@ -18,7 +18,7 @@ class AchatForm(forms.Form):
     priceAchat = forms.FloatField(label="Prix total", max_value=100000 , required=True)
     Client = forms.ModelChoiceField(queryset=Client.objects.all ())
     Panier = forms.ModelChoiceField(queryset=Panier.objects.all())
-    Produit = forms.ModelChoiceField(queryset=Produit.objects.all())
+    Produit = forms.ModelMultipleChoiceField(queryset=Produit.objects.all())
 
 class TransactionForm(forms.Form):
     operationTransaction = forms.CharField(label="Nom de l'opération ", max_length=255)
@@ -39,5 +39,6 @@ class CategorieForm(forms.Form):
     description = forms.CharField(label=" description", max_length=255)
 
 class PanierForm(forms.Form):
+    nomPanier = forms.CharField(label="Nom du Panier ", max_length=255)
     datePanier = forms.DateField(label="Date " , required=True)
     etatPanier = forms.CharField(label="Etat du panier", required=True)

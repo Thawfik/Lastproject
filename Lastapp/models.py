@@ -37,17 +37,26 @@ class Achat(models.Model):
     Panier = models .ForeignKey(Panier , on_delete=models.CASCADE)
     Produit = models.ForeignKey(Produit , on_delete=models.CASCADE , default=1)
 
+class Operateur(models.Model):
+    nom = models.CharField(max_length=255 , default="")
+    def __str__(self):
+        return self.nom
+
 class Transaction(models.Model):
     operation = models.CharField(max_length=100)
     montant = models.FloatField(null=False)
-    operateur = models.CharField(max_length=255)
     dateoperation = models.DateField()
     Client = models.ForeignKey(Client , on_delete=models.CASCADE)
+    Operateur = models.ForeignKey(Operateur , on_delete=models.CASCADE)
+
+class ModePaiement(models.Model):
+    nomMode = models.CharField(max_length=255 , default ="")
+    def __str__(self):
+        return self.nomMode
     
 
 class Facture(models.Model):
     date = models.DateField()
-    mode_paiement = models.CharField(max_length=100)
     etat = models.CharField(max_length=255 )
     notes = models.CharField(max_length=255)
     Panier = models.ForeignKey(Panier , on_delete=models.CASCADE)
