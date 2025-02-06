@@ -35,11 +35,11 @@ def ajoutProduit(request):
             Categorie = produitform.cleaned_data["Categorie"]
             oProduit1 = Produit(nom = nom , description = description ,prix_unitaire = prix   ,Categorie = Categorie)
             oProduit1.save()
-            redirect("listeProduits")
+            
     else:
-        form = ProductForm()
+        produitform = ProductForm()
 
-    return render(request, "Produits/ajoutProduit.html", {"product_form": form})
+    return render(request, "Produits/ajoutProduit.html", {"product_form":produitform})
 
 def ajoutCategorie(request):
     if request.method == "POST":
@@ -49,11 +49,11 @@ def ajoutCategorie(request):
             description = categorieform.cleaned_data["description"]
             oCategorie1 = Categorie(titre = titre , description = description)
             oCategorie1.save()
-            redirect("listeProduits")
+            
     else:
-        form = CategorieForm()
+        categorieform = CategorieForm()
 
-    return render(request, "Categorie/ajoutCategorie.html", {"categorie_form": form})
+    return render(request, "Categorie/ajoutCategorie.html", {"categorie_form":categorieform})
 
 
 def ajoutClient(request):

@@ -2,7 +2,7 @@ from django import forms
 from Lastapp.models import Categorie , Produit , Client , Panier
 
 class ProductForm(forms.Form):
-    nameProduct = forms.CharField(label="Nom du menu" , max_length=255)
+    nameProduct = forms.CharField(label="Nom du produit" , max_length=255)
     describeProduct = forms.CharField(label="description ", max_length=255)
     puProduct = forms.IntegerField(label="Prix unitaire" ,max_value=10000 , required=True)
     Categorie = forms.ModelChoiceField(queryset=Categorie.objects.all())

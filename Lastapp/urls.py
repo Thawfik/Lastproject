@@ -14,7 +14,7 @@ urlpatterns = [
     path('categorie/', views.listeCategorie , name="listeCategories"),
 
     #/market/ajout_categorie : URL menant à la page d'ajout des categories
-    path('ajout_produit/', views.ajoutCategorie , name="ajoutCategorie"),
+    path('ajout_categorie/', views.ajoutCategorie , name="ajoutCategorie"),
 
     #/market/client : URL menant à la page de la liste des clients
     path('client/', views.listeClient , name="listeClients"),
