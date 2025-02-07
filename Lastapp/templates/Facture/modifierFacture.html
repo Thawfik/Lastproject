@@ -1,10 +1,10 @@
 {% extends "Acceuil.html" %}
 
 {% block contenu %}
-<div class="container">
-<h1 style="text-align: center;">NOUVELLE FACTURE</h1>
 
-<form action="{% url 'ajoutFacture' %}" method="post">
+<h1>NOUVELLE FACTURE</h1>
+<div class="container">
+<form method="post">
 
     {% csrf_token %}
     {{ facture_form.as_p }} 

@@ -1,11 +1,10 @@
 {% extends "Acceuil.html" %}
 
 {% block contenu %}
-
-<h1>ENREGISTRER UN ACHAT </h1>
 <div class="container">
+<h1 style="text-align: center;">MODIFIER UN ACHAT </h1>
 
-<form action="{% url 'ajoutAchat' %}" method="post">
+<form  method="post">
 
     {% csrf_token %}
     {{ achat_form.as_p }} 

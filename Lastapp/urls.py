@@ -53,28 +53,28 @@ urlpatterns = [
     path('supp_produit/<int:id>/', views.supprimerProduit, name="supprimerProduit"),
 
     #/market/modif_client : URL menant à la page de modification des Clients
-    path('modif_client/', views.modifierClient , name="modifierClient"),
+    path('modif_client/<int:id>/', views.modifierClient , name="modifierClient"),
 
     #/market/supp_client : URL menant à la page de suppression des clients
-    path('supp_client/', views.supprimerClient , name="supprimerClient"),
+    path('supp_client/<int:id>/', views.supprimerClient , name="supprimerClient"),
 
      #/market/modif_ctransaction : URL menant à la page de modification des Transactions
-    path('modif_transaction/', views.modifierTransaction , name="modifierTransaction"),
+    path('modif_transaction/<int:id>/', views.modifierTransaction , name="modifierTransaction"),
 
     #/market/supp_transaction : URL menant à la page de suppression des transactions
-    path('supp_transaction/', views.supprimerTransaction , name="supprimerTransaction"),
+    path('supp_transaction/<int:id>/', views.supprimerTransaction , name="supprimerTransaction"),
 
      #/market/modif_achat : URL menant à la page de modification des achats
-    path('modif_achat/', views.modifierAchat , name="modifierAchat"),
+    path('modif_achat/<int:id>/', views.modifierAchat , name="modifierAchat"),
 
     #/market/supp_achat : URL menant à la page de suppression des achats
-    path('supp_achat/', views.supprimerAchat , name="supprimerAchat"),
+    path('supp_achat/<int:id>/', views.supprimerAchat , name="supprimerAchat"),
 
      #/market/modif_facture : URL menant à la page de modification des Factures
-    path('modif_facture/', views.modifierFacture , name="modifierFacture"),
+    path('modif_facture/<int:id>/', views.modifierFacture , name="modifierFacture"),
 
     #/market/supp_client : URL menant à la page de suppression des facutres
-    path('supp_facture/', views.supprimerFacture , name="supprimerFacture")
+    path('supp_facture/<int:id>/', views.supprimerFacture , name="supprimerFacture")
 
 
 

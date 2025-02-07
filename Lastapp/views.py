@@ -174,28 +174,105 @@ def supprimerProduit(request , id):
     product.delete()
     return redirect("listeProduits")
 
-def modifierClient(request):
-    pass
+def modifierClient(request,id):
+    cli = Client.objects.get(id=id)
+    if request.method == "POST":
+        cliform = ClientForm(request.POST , initial=cli)
+        if cliform.is_valid():
+            nom = cliform.cleaned_data["nameClient"]
+            prenom = cliform.cleaned_data["surnameClient"]
+            contact = cliform.cleaned_data["contactClient"]
+            residence = cliform.cleaned_data["residenceClient"]
+            Client.objects.filter(id=id).update(nom=nom,prenom=prenom,contact=contact,residence=residence)
+            
 
-def supprimerClient(request):
-    pass
+        return redirect("listeClients")
+    else:
+        cliform = ClientForm()
 
-def modifierTransaction(request):
-    pass
+    return render(request, "Clients/modifierClient.html", {"client_form":cliform})
 
-def supprimerTransaction(request):
-    pass
+def supprimerClient(request,id):
+    cli = Client.objects.get(id=id)
+    cli.delete()
+    return redirect("listeClients")
 
-def modifierAchat(request):
-    pass
+def modifierTransaction(request,id):
+    transac = Transaction.objects.get(id=id)
+    if request.method == "POST":
+        transacform = TransactionForm(request.POST , initial=transac)
+        if transacform.is_valid():
+            operation = transacform.cleaned_data["operationTransaction"]
+            montant = transacform.cleaned_data["amountTransaction"]
+            date = transacform.cleaned_data["dateTransaction"]
+            Operateur = transacform.cleaned_data["Operateur"]
+            Client = transacform.cleaned_data["Client"]
+           
+            Transaction.objects.filter(id=id).update(operation=operation,montant=montant,dateoperation=date,Client=Client,Operateur=Operateur)
+            
+
+        return redirect("listeTransactions")
+    else:
+        transacform = TransactionForm()
+
+    return render(request, "Transactions/modifierTransaction.html", {"transaction_form":transacform})
+
+def supprimerTransaction(request,id):
+    transac = Transaction.objects.get(id=id)
+    transac.delete()
+    return redirect("listeTransactions")
+      
+
+def modifierAchat(request,id):
+    ach = Achat.objects.get(id=id)
+    if request.method == "POST":
+        achform = AchatForm(request.POST , initial=ach)
+        if achform.is_valid():
+            quantite = achform.cleaned_data["quantiteAchat"]
+            prix = achform.cleaned_data["priceAchat"]
+            Client = achform.cleaned_data["Client"]
+            Panier = achform.cleaned_data["Panier"]
+            Produit = achform.cleaned_data["Produit"]
+           
+           
+            Achat.objects.filter(id=id).update(quantite_total = quantite , prix_total = prix , Client = Client , Panier = Panier , Produit = Produit)
+            
+
+        return redirect("listeAchats")
+    else:
+        achform = AchatForm()
+
+    return render(request, "Achats/modifierAchat.html", {"achat_form":achform})
 
 def supprimerAchat(request):
-    pass
+    ach = Achat.objects.get(id=id)
+    ach.delete()
+    return redirect("listeAchats")
 
-def modifierFacture(request):
-    pass
+def modifierFacture(request,id):
+    fac = Facture.objects.get(id=id)
+    if request.method == "POST":
+        facform = FactureForm(request.POST , initial=fac)
+        if facform.is_valid():
+            date = facform.cleaned_data["dateFacture"]
+            etat = facform.cleaned_data["etatFacture"]
+            notes = facform.cleaned_data["notesFacture"]
+            Panier = facform.cleaned_data["Panier"]
+            ModePaiement = facform.cleaned_data["ModePaiement"]
+           
+           
+            Facture.objects.filter(id=id).update(date = date  , etat = etat , note = notes , Panier = Panier , ModePaiement = ModePaiement)
+            
+
+        return redirect("listeFactures")
+    else:
+        facform = FactureForm()
+
+    return render(request, "Facture/modifierFacture.html", {"facture_form":facform})
 
 def supprimerFacture(request):
-    pass
+    fac = Facture.objects.get(id=id)
+    Facture.delete()
+    return redirect("listeFactures")
 
 
