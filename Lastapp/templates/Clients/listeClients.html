@@ -12,6 +12,8 @@
           <th scope="col">PRENOM</th>
           <th scope="col">CONTACT</th>
           <th scope="col">RESIDENCE</th>
+          <th scope="col">ACTIONS</th>
+          
         </tr>
       </thead>
       <tbody>
@@ -22,12 +24,16 @@
           <td>{{ client.prenom}}</td>
           <td>{{ client.contact}}</td>
           <td>{{ client.residence}}</td>
+          <td>
+            <a  a class="btn btn-primary" role="button" href="{% url 'modifierClient' %}">Modifer</a>
+            <a  class="btn btn-secondary" role="button" href="{% url 'supprimerClient' %}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce client  ?');">Supprimer</a>
+          </td>
         </tr>
         {% endfor %}
       </tbody>
   </table>
   <div>
-    <a class="btn btn-success" role="button" href="{% url 'ajoutClient' %}" style="position: absolute; bottom: 20px;  left: 20px;">AJOUTER UN CLIENT</a>
+    <a class="btn btn-success" role="button" href="{% url 'ajoutClient' %}" style="position: fixed; bottom: 20px;  left: 20px;">AJOUTER UN CLIENT</a>
 </div>
 
 

@@ -44,6 +44,39 @@ urlpatterns = [
     path('panier/', views.listePanier , name="listePaniers"),
 
     #/market/ajout_panier : URL menant à la page d'ajout des Paniers
-    path('ajout_panier/', views.ajoutPanier, name="ajoutPanier")
+    path('ajout_panier/', views.ajoutPanier, name="ajoutPanier"),
+
+    #/market/modif_produit : URL menant à la page de modification des Produits
+    path('modif_produit/<int:id>/', views.modifierProduit , name="modifierProduit"),
+
+    #/market/supp_produit : URL menant à la page de suppression des produits
+    path('supp_produit/<int:id>/', views.supprimerProduit, name="supprimerProduit"),
+
+    #/market/modif_client : URL menant à la page de modification des Clients
+    path('modif_client/', views.modifierClient , name="modifierClient"),
+
+    #/market/supp_client : URL menant à la page de suppression des clients
+    path('supp_client/', views.supprimerClient , name="supprimerClient"),
+
+     #/market/modif_ctransaction : URL menant à la page de modification des Transactions
+    path('modif_transaction/', views.modifierTransaction , name="modifierTransaction"),
+
+    #/market/supp_transaction : URL menant à la page de suppression des transactions
+    path('supp_transaction/', views.supprimerTransaction , name="supprimerTransaction"),
+
+     #/market/modif_achat : URL menant à la page de modification des achats
+    path('modif_achat/', views.modifierAchat , name="modifierAchat"),
+
+    #/market/supp_achat : URL menant à la page de suppression des achats
+    path('supp_achat/', views.supprimerAchat , name="supprimerAchat"),
+
+     #/market/modif_facture : URL menant à la page de modification des Factures
+    path('modif_facture/', views.modifierFacture , name="modifierFacture"),
+
+    #/market/supp_client : URL menant à la page de suppression des facutres
+    path('supp_facture/', views.supprimerFacture , name="supprimerFacture")
+
+
+
 
 ]

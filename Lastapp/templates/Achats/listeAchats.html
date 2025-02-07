@@ -14,6 +14,8 @@
           <th scope="col">CLIENT</th>
           <th scope="col">PANIER</th>
           <th scope="col">PRODUITS</th>
+          <th scope="col">ACTIONS</th>
+
         </tr>
       </thead>
       <tbody>
@@ -26,15 +28,19 @@
           <td>{{ achat.Client}}</td>
           <td>{{ achat.Panier}}</td>
           <td>{{ achat.Produit}}</td>
+          <td>
+            <a  a class="btn btn-primary" role="button" href="{% url 'modifierAchat' %}">Modifer</a>
+            <a  class="btn btn-secondary" role="button" href="{% url 'supprimerAchat' %}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet achat  ?');">Supprimer</a>
+          </td>
         </tr>
         {% endfor %}
       </tbody>
   </table>
   <div>
-    <a class="btn btn-success" role="button" href="{% url 'ajoutAchat' %}" style="position: absolute; bottom: 20px;  left: 20px;">AJOUTER UN ACHAT</a>
+    <a class="btn btn-success" role="button" href="{% url 'ajoutAchat' %}" style="position: fixed; bottom: 20px;  left: 20px;">AJOUTER UN ACHAT</a>
 </div>
 
 <div>
-    <a class="btn btn-success" role="button" href="{% url 'ajoutPanier' %}" style="position: absolute; bottom: 20px;  right: 20px;">AJOUTER UN PANIER</a>
+    <a class="btn btn-success" role="button" href="{% url 'ajoutPanier' %}" style="position: fixed; bottom: 20px;  right: 20px;">AJOUTER UN PANIER</a>
 </div>
 {% endblock %}

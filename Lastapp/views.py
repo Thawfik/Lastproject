@@ -53,6 +53,7 @@ def ajoutCategorie(request):
             description = categorieform.cleaned_data["description"]
             oCategorie1 = Categorie(titre = titre , description = description)
             oCategorie1.save()
+        return redirect("listeProduits")
         
             
     else:
@@ -72,7 +73,7 @@ def ajoutClient(request):
             oClient1 = Client(nom = nom  , prenom = prenom , contact = contact , residence = residence)
             oClient1.save()
             
-        redirect("listeClients")
+        return redirect("listeClients")
     else:
         clientform = ClientForm()
 
@@ -90,6 +91,7 @@ def ajoutTransaction(request):
 
             oTransaction1 = Transaction(operation = operation  , montant = montant ,  dateoperation = date , Operateur = Operateur , Client = Client  )
             oTransaction1.save()
+        return redirect("listeTransactions")
     else:
         transactionform = TransactionForm()
 
@@ -125,6 +127,7 @@ def ajoutAchat(request):
 
             oAchat1 = Achat(quantite_total = quantite , prix_total = prix , Client = Client , Panier = Panier , Produit = Produit)
             oAchat1.save()
+        return redirect("listeAchats")
     else:
         achatform = AchatForm()
 
@@ -141,11 +144,58 @@ def ajoutPanier(request):
             oPanier1 = Panier( nomPanier = nom , date_creation = date , etat = etat)
             oPanier1.save()
    
-        redirect("listeFactures")
+        return redirect("listeFactures")
             
     else:
         panierform = PanierForm()
 
     return render(request, "Panier/ajoutPanier.html", {"panier_form":panierform})
+
+def modifierProduit(request,id):
+    product = Produit.objects.get(id=id)
+    if request.method == "POST":
+        proform = ProductForm(request.POST , initial=product)
+        if proform.is_valid():
+            nom = proform.cleaned_data["nameProduct"]
+            description = proform.cleaned_data["describeProduct"]
+            prix = proform.cleaned_data["puProduct"]
+            Categorie = proform.cleaned_data["Categorie"]
+        Produit.objects.filter(id=id).update(nom = nom , description = description , prix_unitaire = prix , Categorie = Categorie)
+
+        return redirect("listeProduits")
+    else:
+        proform = ProductForm()
+
+    return render(request, "Produits/modifierProduit.html", {"product_form":proform})
+
+
+def supprimerProduit(request , id):
+    product = Produit.objects.get(id=id)
+    product.delete()
+    return redirect("listeProduits")
+
+def modifierClient(request):
+    pass
+
+def supprimerClient(request):
+    pass
+
+def modifierTransaction(request):
+    pass
+
+def supprimerTransaction(request):
+    pass
+
+def modifierAchat(request):
+    pass
+
+def supprimerAchat(request):
+    pass
+
+def modifierFacture(request):
+    pass
+
+def supprimerFacture(request):
+    pass
 
 

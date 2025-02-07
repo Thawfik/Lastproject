@@ -12,6 +12,7 @@
           <th scope="col">DESCRIPTION</th>
           <th scope="col">PRIX UNITAIRE</th>
           <th scope="col">CATEGORIE</th>
+          <th scope="col">ACTIONS</th>
         </tr>
       </thead>
       <tbody>
@@ -22,16 +23,20 @@
           <td>{{ produit.description}}</td>
           <td>{{ produit.prix_unitaire}}</td>
           <td>{{ produit.Categorie}}</td>
+          <td>
+            <a  a class="btn btn-primary" role="button" href="{% url 'modifierProduit' produit.id %}">Modifier</a>
+            <a  class="btn btn-secondary" role="button" href="{% url 'supprimerProduit' produit.id %}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?');">Supprimer</a>
+          </td>
         </tr>
         {% endfor %}
       </tbody>
   </table>
   <div>
-    <a class="btn btn-success" role="button" href="{% url 'ajoutProduit' %}" style="position: absolute; bottom: 20px;  left: 20px;">AJOUTER UN PRODUIT</a>
+    <a class="btn btn-success" role="button" href="{% url 'ajoutProduit' %}" style="position: fixed; bottom: 10px;  left: 10px;">AJOUTER UN PRODUIT</a>
 </div>
 
 <div>
-  <a class="btn btn-success" role="button" href="{% url 'ajoutCategorie' %}" style="position: absolute; bottom: 20px;  right: 20px;">AJOUT CATEGORIE</a>
+  <a class="btn btn-success" role="button" href="{% url 'ajoutCategorie' %}" style="position: fixed; bottom: 10px;  right: 10px;">AJOUT CATEGORIE</a>
 </div>
 
 {% endblock %}
