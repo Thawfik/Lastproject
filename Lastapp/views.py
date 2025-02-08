@@ -1,7 +1,8 @@
 from django.shortcuts import render , redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from Lastapp.models import Produit, Categorie , Client , Transaction , Facture , Panier , Achat
 from .forms import ProductForm , CategorieForm ,ClientForm , TransactionForm , FactureForm , AchatForm , PanierForm
+
 
 def listeProduits(request):
     context = {"listeproduits":Produit.objects.all() }
