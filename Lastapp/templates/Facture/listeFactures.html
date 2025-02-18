@@ -23,8 +23,8 @@
           <td>{{ facture.date}}</td>
           <td>{{ facture.etat}}</td>
           <td>{{ facture.notes}}</td>
-          <td>{{ transaction.Panier}}</td>
-          <td>{{ transaction.ModePaiement}}</td>
+          <td>{{ facture.Panier}}</td>
+          <td>{{ facture.ModePaiement}}</td>
           <td>
             <a  a class="btn btn-primary" role="button" href="{% url 'modifierFacture'  facture.id %}"><i class="bi bi-pencil"></i></a>
             <a  class="btn btn-secondary" role="button" href="{% url 'supprimerFacture' facture.id %}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette facture  ?');"><i class="bi bi-trash"></i></a>

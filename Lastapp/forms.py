@@ -16,9 +16,10 @@ class ClientForm(forms.Form):
 class AchatForm(forms.Form):
     quantiteAchat = forms.IntegerField(label="Quantité " , max_value=50 , required=True)
     priceAchat = forms.FloatField(label="Prix total", max_value=100000 , required=True)
+    statutAchat = forms.CharField(label="Statut " , max_length=255)
     Client = forms.ModelChoiceField(queryset=Client.objects.all ())
     Panier = forms.ModelChoiceField(queryset=Panier.objects.all())
-    Produit = forms.ModelMultipleChoiceField(queryset=Produit.objects.all())
+    Produit = forms.ModelMultipleChoiceField(queryset=Produit.objects.all() , widget = forms.CheckboxSelectMultiple)
 
 class TransactionForm(forms.Form):
     operationTransaction = forms.CharField(label="Operation", max_length=255)

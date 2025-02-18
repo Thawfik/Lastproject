@@ -32,7 +32,7 @@ class Panier(models.Model):
 class Achat(models.Model):
     quantité_total = models.IntegerField(null=False)
     prix_total = models.FloatField(null=False)
-    Statut = models.BooleanField(null=True)
+    Statut = models.CharField(max_length=255)
     Client = models.ForeignKey(Client , on_delete=models.CASCADE)
     Panier = models .ForeignKey(Panier , on_delete=models.CASCADE)
     Produit = models.ForeignKey(Produit , on_delete=models.CASCADE , default=1)

@@ -17,26 +17,14 @@
                 justify-content: center;
                 align-items: center;
             }
+
             .container {
                 background-color: white; 
                 padding: 20px;
                 border-radius: 10px;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             }
-
-            .sidebar {
-                width: 60px;
-                height: 100%;
-                background-color: #1877f2;
-                padding: 20px;
-                box-sizing: border-box;
-                color: #ffff;
-                overflow: hidden;
-                border-radius: 5px 0 0 5px;
-                transition: width .75s ease;
-
-            }
-
+            
 
             h1 {
                 text-align: center;
@@ -47,10 +35,9 @@
                 flex-direction: column;
             }
     </style>
-    <title>Document</title>
+    <title>MARKET</title>
 </head>
 <body>
-    <div class="sidebar">
         <header>
             <nav class="nav flex-column">
                 <a class="nav-link active" aria-current="page" href="{% url 'listeProduits' %}">PRODUITS</a>
@@ -60,7 +47,6 @@
                 <a class="nav-link" href="{% url 'listeFactures' %}">FACTURES</a>
             </nav>
         </header>
-    </div>
     <div class="content container">
         {% block contenu %}
         {% endblock %}

@@ -20,7 +20,7 @@ def listeAchats(request):
     return render(request , "Achats/listeAchats.html" , context)
 
 def listeTransaction(request):
-    context = {"listetransactions":Transaction.objects.all() }
+    context = {"listetransactions":Transaction.objects.order_by("dateoperation") }
     return render(request , "Transactions/listeTransactions.html" , context)
 
 def listeFacture(request):
@@ -105,11 +105,11 @@ def ajoutFacture(request):
         if factureform.is_valid():
             date = factureform.cleaned_data["dateFacture"]
             etat = factureform.cleaned_data["etatFacture"]
-            notes = factureform.cleaned_data["notesFacture"]
+            note = factureform.cleaned_data["notesFacture"]
             Panier = factureform.cleaned_data["Panier"]
             ModePaiement = factureform.cleaned_data["ModePaiement"]
 
-            oFacture1 = Facture(date = date  , etat = etat , note = notes , Panier = Panier , ModePaiement = ModePaiement)
+            oFacture1 = Facture(date = date  , etat = etat , notes = note , Panier = Panier , ModePaiement = ModePaiement)
             oFacture1.save()
     else:
         factureform = FactureForm()
@@ -122,12 +122,17 @@ def ajoutAchat(request):
         if achatform.is_valid():
             quantite = achatform.cleaned_data["quantiteAchat"]
             prix = achatform.cleaned_data["priceAchat"]
+            statut = achatform.cleaned_data["statutAchat"]
             Client = achatform.cleaned_data["Client"]
             Panier = achatform.cleaned_data["Panier"]
             Produit = achatform.cleaned_data["Produit"]
 
-            oAchat1 = Achat(quantite_total = quantite , prix_total = prix , Client = Client , Panier = Panier , Produit = Produit)
+            oAchat1 = Achat(quantité_total = quantite , prix_total = prix , Statut = statut , Client = Client , Panier = Panier)
             oAchat1.save()
+
+            for produit in Produit:
+                # Créer une instance Achat pour chaque produit
+                Achat.objects.create(quantité_total = quantite, prix_total = prix, Client=Client, Panier=Panier, Produit=produit)
         return redirect("listeAchats")
     else:
         achatform = AchatForm()
@@ -170,7 +175,7 @@ def modifierProduit(request,id):
     return render(request, "Produits/modifierProduit.html", {"product_form":proform})
 
 
-def supprimerProduit(request , id):
+def supprimerProduit(request,id):
     product = Produit.objects.get(id=id)
     product.delete()
     return redirect("listeProduits")
@@ -231,12 +236,17 @@ def modifierAchat(request,id):
         if achform.is_valid():
             quantite = achform.cleaned_data["quantiteAchat"]
             prix = achform.cleaned_data["priceAchat"]
+            statut = achform.cleaned_data["statutAchat"]
             Client = achform.cleaned_data["Client"]
             Panier = achform.cleaned_data["Panier"]
             Produit = achform.cleaned_data["Produit"]
            
            
-            Achat.objects.filter(id=id).update(quantite_total = quantite , prix_total = prix , Client = Client , Panier = Panier , Produit = Produit)
+            Achat.objects.filter(id=id).update(quantité_total = quantite , prix_total = prix ,Statut = statut , Client = Client , Panier = Panier)
+
+            for produit in Produit:
+                # Créer une instance Achat pour chaque produit
+                Achat.objects.update(quantité_total = quantite, prix_total = prix, Statut = statut, Client=Client, Panier=Panier, Produit=produit)
             
 
         return redirect("listeAchats")
@@ -245,7 +255,7 @@ def modifierAchat(request,id):
 
     return render(request, "Achats/modifierAchat.html", {"achat_form":achform})
 
-def supprimerAchat(request):
+def supprimerAchat(request,id):
     ach = Achat.objects.get(id=id)
     ach.delete()
     return redirect("listeAchats")
@@ -271,9 +281,9 @@ def modifierFacture(request,id):
 
     return render(request, "Facture/modifierFacture.html", {"facture_form":facform})
 
-def supprimerFacture(request):
+def supprimerFacture(request, id):
     fac = Facture.objects.get(id=id)
-    Facture.delete()
+    fac.delete()
     return redirect("listeFactures")
 
 
