@@ -17,13 +17,26 @@
                 justify-content: center;
                 align-items: center;
             }
-
             .container {
-                background-color: white; /* Couleur de fond du formulaire */
+                background-color: white; 
                 padding: 20px;
                 border-radius: 10px;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             }
+
+            .sidebar {
+                width: 60px;
+                height: 100%;
+                background-color: #1877f2;
+                padding: 20px;
+                box-sizing: border-box;
+                color: #ffff;
+                overflow: hidden;
+                border-radius: 5px 0 0 5px;
+                transition: width .75s ease;
+
+            }
+
 
             h1 {
                 text-align: center;
@@ -37,15 +50,17 @@
     <title>Document</title>
 </head>
 <body>
-    <header>
-        <nav class="nav flex-column">
-            <a class="nav-link active" aria-current="page" href="{% url 'listeProduits' %}">PRODUITS</a>
-            <a class="nav-link" href="{% url 'listeAchats' %}">ACHATS</a>
-            <a class="nav-link" href="{% url 'listeTransactions' %}">TRANSACTIONS</a>
-            <a class="nav-link" href="{% url 'listeClients' %}">CLIENTS</a>
-            <a class="nav-link" href="{% url 'listeFactures' %}">FACTURES</a>
-          </nav>
-    </header>
+    <div class="sidebar">
+        <header>
+            <nav class="nav flex-column">
+                <a class="nav-link active" aria-current="page" href="{% url 'listeProduits' %}">PRODUITS</a>
+                <a class="nav-link" href="{% url 'listeAchats' %}">ACHATS</a>
+                <a class="nav-link" href="{% url 'listeTransactions' %}">TRANSACTIONS</a>
+                <a class="nav-link" href="{% url 'listeClients' %}">CLIENTS</a>
+                <a class="nav-link" href="{% url 'listeFactures' %}">FACTURES</a>
+            </nav>
+        </header>
+    </div>
     <div class="content container">
         {% block contenu %}
         {% endblock %}
